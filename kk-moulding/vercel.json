@@ -15,6 +15,40 @@
     "NEXT_PUBLIC_PHONE_NUMBER": "@kk-phone-number",
     "NEXT_PUBLIC_EMAIL": "@kk-email",
     "NEXT_PUBLIC_ADDRESS": "@kk-address",
-    "NEXT_PUBLIC_SITE_URL": "@kk-site-url"
-  }
+    "NEXT_PUBLIC_SITE_URL": "https://kkmoulding.com"
+  },
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.kkmoulding.com" }],
+      "destination": "https://kkmoulding.com/$1",
+      "permanent": true,
+      "statusCode": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
+    },
+    {
+      "source": "/_next/static/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(png|jpg|jpeg|gif|webp|avif|svg|ico|woff|woff2)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    }
+  ]
 }
+
