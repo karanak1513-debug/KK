@@ -8,12 +8,8 @@ import { getProducts, getSiteSettings } from '@/lib/firestore';
 import { Product, SiteSettings } from '@/lib/types';
 import { Suspense } from 'react';
 
-const fallback: Product[] = [
-  { id: '1', title: 'Classic Teak Architrave', slug: 'classic-teak-architrave', category: 'Wooden Mouldings', woodType: 'Teak', finish: 'Raw', dimensions: '75mm × 18mm', description: 'A traditional architrave in solid teak.', usage: 'Door frames, window surrounds', customization: 'Custom widths available.', images: ['https://images.unsplash.com/photo-1615529328331-f8917597711f?w=900&q=80'], featured: true, createdAt: '' },
-  { id: '2', title: 'Colonial Door Chaukat', slug: 'colonial-door-chaukat', category: 'Door Chaukat', woodType: 'Sal', finish: 'Smooth', dimensions: 'Standard & Custom', description: 'Heavy duty sal wood door frames.', usage: 'Main entrances, internal doors', customization: 'Any size to order.', images: ['https://images.unsplash.com/photo-1558979158-65a1eaa08691?w=900&q=80'], featured: true, createdAt: '' },
-  { id: '3', title: 'Shiplap Wall Panel', slug: 'shiplap-wall-panel', category: 'Wall Panels', woodType: 'Pine', finish: 'Natural', dimensions: '120mm × 15mm', description: 'Interlocking pine shiplap panels.', usage: 'Feature walls, cladding', customization: 'Length to order.', images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=80'], featured: false, createdAt: '' },
-  { id: '4', title: 'Ogee Decorative Profile', slug: 'ogee-decorative-profile', category: 'Decorative Profiles', woodType: 'Engineered Hardwood', finish: 'Smooth', dimensions: '50mm × 12mm', description: 'Elegant ogee curve profile.', usage: 'Furniture trim, cornice work', customization: 'Custom profiles available.', images: ['https://images.unsplash.com/photo-1592347535538-81d9be6e7e0d?w=900&q=80'], featured: true, createdAt: '' },
-];
+const fallback: Product[] = [];
+
 
 function ProductsContent() {
   const searchParams = useSearchParams();

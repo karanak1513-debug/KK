@@ -6,20 +6,7 @@ import { getGallery } from '@/lib/firestore';
 import { GalleryItem } from '@/lib/types';
 import type { Metadata } from 'next';
 
-const fallbackGallery: GalleryItem[] = [
-  { id: '1', title: 'Installed Teak Moulding', category: 'Installations', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '2', title: 'Wood Grain Detail', category: 'Textures', image: 'https://images.unsplash.com/photo-1572537800927-f28f7b26ab20?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '3', title: 'Workshop Interior', category: 'Workshop', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '4', title: 'Moulding Profile Close-up', category: 'Products', image: 'https://images.unsplash.com/photo-1615529328331-f8917597711f?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '5', title: 'Sal Door Frame', category: 'Installations', image: 'https://images.unsplash.com/photo-1558979158-65a1eaa08691?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '6', title: 'Pine Wall Panels', category: 'Installations', image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '7', title: 'Hand Sanding', category: 'Workshop', image: 'https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '8', title: 'Milling Machine', category: 'Workshop', image: 'https://images.unsplash.com/photo-1545211345-d43bc1b17c45?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '9', title: 'Wood Texture Stack', category: 'Textures', image: 'https://images.unsplash.com/photo-1542621334-a254cf47733d?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '10', title: 'Decorative Profile Detail', category: 'Products', image: 'https://images.unsplash.com/photo-1592347535538-81d9be6e7e0d?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '11', title: 'Interior Installation', category: 'Installations', image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-  { id: '12', title: 'Raw Door Planks', category: 'Products', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=75&auto=format&fit=crop', createdAt: '' },
-];
+const fallbackGallery: GalleryItem[] = [];
 
 // const galleryCategories = ['All', 'Installations', 'Workshop', 'Products', 'Textures'];
 
