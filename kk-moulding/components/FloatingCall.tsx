@@ -7,7 +7,7 @@ export default function FloatingCall() {
   return (
     <a
       href={telUrl}
-      className="fixed bottom-24 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#8C6239] text-white rounded-full shadow-lg hover:bg-[#7A5330] transition-transform hover:scale-110"
+      className="fixed bottom-24 left-6 z-50 flex items-center justify-center w-14 h-14 bg-[#8C6239] text-white rounded-full shadow-lg hover:bg-[#7A5330] transition-transform hover:scale-110"
       aria-label="Call Now"
     >
       <svg
