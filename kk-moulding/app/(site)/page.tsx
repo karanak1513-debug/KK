@@ -234,31 +234,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Features Bar */}
-      <section className="py-12 border-t border-[#E6D5C3]">
-        <div className="container-editorial">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { title: 'Premium Quality Wood', sub: 'Carefully selected for durability and elegance' },
-              { title: 'Skilled Artisans', sub: 'Expert craftsmanship passed down through generations' },
-              { title: 'Custom Solutions', sub: 'Tailored designs to suit your unique requirements' },
-              { title: 'Timely Delivery', sub: 'Reliable and committed to on-time delivery' }
-            ].map((feat, i) => (
-              <div key={i} className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full border border-[#E6D5C3] flex items-center justify-center shrink-0">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-sans text-sm font-medium text-[#3E2723] mb-1">{feat.title}</h4>
-                  <p className="font-sans text-xs text-[#8C6239] leading-relaxed">{feat.sub}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
     </div>
   );
