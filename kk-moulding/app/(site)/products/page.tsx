@@ -84,7 +84,7 @@ function ProductsContent() {
               <p className="text-[#8C8279]">Please select another category.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
               {filtered.map((product) => (
                 <div key={product.id} className="group flex flex-col">
                   <Link href={`/products/${product.slug}`} className="block mb-6 img-zoom-wrap aspect-[3/4]">

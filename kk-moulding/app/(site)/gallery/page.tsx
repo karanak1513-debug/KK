@@ -66,7 +66,7 @@ export default function GalleryPage() {
       {/* Grid */}
       <section className="section-padding bg-[#FFFFFF]">
         <div className="container-editorial">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {filtered.map((item, i) => (
               <div
                 key={item.id}

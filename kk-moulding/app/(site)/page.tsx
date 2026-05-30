@@ -70,7 +70,7 @@ export default async function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6">
             {products.map((prod, i) => (
               <Link href={`/products`} key={prod.id} className="group block">
                 <div className="aspect-[4/5] bg-[#E6D5C3]/30 overflow-hidden rounded-[4px] mb-4 relative">
