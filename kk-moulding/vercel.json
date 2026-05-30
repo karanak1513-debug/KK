@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "env": {
+    "NEXT_PUBLIC_FIREBASE_API_KEY": "@kk-firebase-api-key",
+    "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN": "@kk-firebase-auth-domain",
+    "NEXT_PUBLIC_FIREBASE_PROJECT_ID": "@kk-firebase-project-id",
+    "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET": "@kk-firebase-storage-bucket",
+    "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID": "@kk-firebase-messaging-sender-id",
+    "NEXT_PUBLIC_FIREBASE_APP_ID": "@kk-firebase-app-id",
+    "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID": "@kk-firebase-measurement-id",
+    "NEXT_PUBLIC_WHATSAPP_NUMBER": "@kk-whatsapp-number",
+    "NEXT_PUBLIC_PHONE_NUMBER": "@kk-phone-number",
+    "NEXT_PUBLIC_EMAIL": "@kk-email",
+    "NEXT_PUBLIC_ADDRESS": "@kk-address",
+    "NEXT_PUBLIC_SITE_URL": "@kk-site-url"
+  }
+}
