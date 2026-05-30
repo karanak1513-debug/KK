@@ -54,6 +54,7 @@ export interface SiteSettings {
   email: string;
   address: string;
   mapEmbedUrl: string;
+  showMap?: boolean;
   heroImage?: string;
   craftLeftImage?: string;
   craftRightImage?: string;

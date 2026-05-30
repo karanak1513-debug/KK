@@ -33,7 +33,7 @@ export default function AdminSettingsPage() {
     }
   };
 
-  const update = (key: keyof SiteSettings, value: string) => {
+  const update = (key: keyof SiteSettings, value: any) => {
     setSettings((prev) => prev ? { ...prev, [key]: value } : null);
   };
 
@@ -97,6 +97,7 @@ export default function AdminSettingsPage() {
         { key: 'whatsapp', label: 'WhatsApp Number (digits only)', placeholder: '919876543210' },
         { key: 'email', label: 'Email Address', placeholder: 'info@kkmoulding.com' },
         { key: 'address', label: 'Business Address', placeholder: 'Full address…', multiline: true },
+        { key: 'showMap', label: 'Show Map on Contact Page', isBoolean: true },
         { key: 'mapEmbedUrl', label: 'Google Maps Embed URL', placeholder: 'https://www.google.com/maps/embed?…', multiline: true },
       ],
     },
@@ -176,6 +177,17 @@ export default function AdminSettingsPage() {
                           {uploading === field.key ? 'Uploading…' : 'Click to upload image'}
                         </p>
                       </label>
+                    </div>
+                  ) : (field as any).isBoolean ? (
+                    <div className="flex items-center gap-3 py-1">
+                      <input
+                        id={`setting-${field.key}`}
+                        type="checkbox"
+                        className="w-5 h-5 text-[#8C6239] border-[#E6D5C3] rounded focus:ring-[#8C6239] focus:ring-opacity-50 cursor-pointer accent-[#8C6239]"
+                        checked={!!(settings as any)[field.key]}
+                        onChange={(e) => update(field.key as keyof SiteSettings, e.target.checked)}
+                      />
+                      <span className="font-sans text-sm text-[#8C6239]">Active</span>
                     </div>
                   ) : (field as any).multiline ? (
                     <textarea

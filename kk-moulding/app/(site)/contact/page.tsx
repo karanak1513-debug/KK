@@ -111,18 +111,20 @@ export default function ContactPage() {
               </a>
 
               {/* Map */}
-              <div className="mt-8 aspect-video w-full bg-[#FAFAFA] overflow-hidden border border-[#E6D5C3]">
-                <iframe
-                  src={mapEmbedUrl}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, filter: 'grayscale(0.5) contrast(1.1) brightness(1.1) sepia(0.1)' }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="K K Moulding Location"
-                />
-              </div>
+              {settings?.showMap && mapEmbedUrl && (
+                <div className="mt-8 aspect-video w-full bg-[#FAFAFA] overflow-hidden border border-[#E6D5C3]">
+                  <iframe
+                    src={mapEmbedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, filter: 'grayscale(0.5) contrast(1.1) brightness(1.1) sepia(0.1)' }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="K K Moulding Location"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Right — Form */}
