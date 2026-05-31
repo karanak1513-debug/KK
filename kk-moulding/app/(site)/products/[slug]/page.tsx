@@ -138,7 +138,7 @@ export default function ProductDetailPage() {
 
             {/* Right: Elegant Details */}
             <div className="lg:col-span-5 lg:sticky lg:top-32 flex flex-col pt-4">
-              <span className="font-sans text-[0.65rem] tracking-[0.25em] uppercase text-[#999999] mb-4 block font-medium">
+              <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#8C6239] mb-4 block font-medium">
                 {product.category}
               </span>
               <h1 className="text-3xl lg:text-5xl mb-6 text-[#3E2723] leading-tight tracking-tight font-medium">

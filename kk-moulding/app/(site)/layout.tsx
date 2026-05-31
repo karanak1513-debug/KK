@@ -8,7 +8,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       <Navbar />
-      <main className="pt-[80px] lg:pt-[90px]">{children}</main>
+      <main className="pt-[56px] lg:pt-[64px]">{children}</main>
       <Footer />
       <FloatingWhatsApp />
       <FloatingCall />

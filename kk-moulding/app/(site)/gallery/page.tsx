@@ -26,8 +26,11 @@ export default function GalleryPage() {
   return (
     <div className="bg-[#FFFFFF] min-h-screen">
 
+      {/* Spacer */}
+      <div className="py-5 lg:py-6" />
+
       {/* Filter */}
-      <div className="sticky top-16 z-40 border-b border-[#E6D5C3] bg-[#FFFFFF]">
+      <div className="sticky top-[56px] lg:top-[64px] z-40 border-b border-[#E6D5C3] bg-[#FFFFFF]">
         <div className="container-editorial">
           <div className="flex items-center gap-2 overflow-x-auto py-4 scrollbar-hide">
             {['All', ...Array.from(new Set(items.map(i => i.category))).filter(Boolean)].map((cat) => (
