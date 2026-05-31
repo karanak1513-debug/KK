@@ -51,7 +51,7 @@ function ProductsContent() {
               onClick={() => setActiveCategory('All')}
               className={`flex-shrink-0 font-sans text-[0.65rem] tracking-[0.2em] uppercase transition-colors pb-1 border-b-2 ${activeCategory === 'All' ? 'text-[#3E2723] border-[#3E2723] font-medium' : 'text-[#8C6239] border-transparent hover:text-[#3E2723]'}`}
             >
-              All Collection
+              All
             </button>
             {Array.from(new Set(products.map(p => p.category))).filter(Boolean).map((category) => (
               <button
@@ -74,7 +74,7 @@ function ProductsContent() {
           {loading ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-5">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="aspect-[3/4] bg-[#FAFAFA] animate-pulse" />
+                <div key={i} className="aspect-[4/5] bg-[#FAFAFA] animate-pulse" />
               ))}
             </div>
           ) : filtered.length === 0 ? (
@@ -85,33 +85,37 @@ function ProductsContent() {
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-5">
               {filtered.map((product) => (
-                <div key={product.id} className="group flex flex-col">
-                  <Link href={`/products/${product.slug}`} className="block mb-2 overflow-hidden aspect-[4/5] bg-[#FAFAFA]">
-                    {product.images?.[0] ? (
-                      <img
-                        src={product.images[0]}
-                        alt={product.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-[#FAFAFA] flex items-center justify-center text-[#999999] text-[0.6rem] tracking-widest uppercase">
-                        No Image
-                      </div>
-                    )}
-                  </Link>
-                  <div className="pt-1.5">
-                    <span className="font-sans text-[0.55rem] lg:text-[0.6rem] tracking-[0.18em] uppercase text-[#8C6239] mb-0.5 block font-medium leading-tight">
-                      {product.category}
-                    </span>
-                    <Link href={`/products/${product.slug}`}>
-                      <h3 className="font-serif text-[0.85rem] lg:text-sm text-[#3E2723] mb-1 group-hover:text-[#8C6239] transition-colors leading-snug">
-                        {product.title}
-                      </h3>
+                <div key={product.id} className="group flex flex-col h-full justify-between">
+                  <div>
+                    <Link href={`/products/${product.slug}`} className="block mb-2 overflow-hidden aspect-[4/5] bg-[#FAFAFA] w-full">
+                      {product.images?.[0] ? (
+                        <img
+                          src={product.images[0]}
+                          alt={product.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-[#FAFAFA] flex items-center justify-center text-[#999999] text-[0.6rem] tracking-widest uppercase">
+                          No Image
+                        </div>
+                      )}
                     </Link>
-                    <p className="font-sans text-[0.55rem] lg:text-[0.6rem] text-[#8C6239] mb-1.5 leading-snug hidden lg:block">
-                      {product.woodType} / {product.finish}
-                    </p>
-                    <Link href={`/products/${product.slug}`} className="font-sans text-[0.5rem] lg:text-[0.55rem] tracking-[0.12em] uppercase text-[#3E2723] group-hover:text-[#8C6239] transition-colors flex items-center gap-1 font-medium">
+                    <div className="pt-1.5 flex flex-col">
+                      <span className="font-sans text-[0.55rem] lg:text-[0.6rem] tracking-[0.18em] uppercase text-[#8C6239] mb-0.5 block font-medium leading-tight line-clamp-1">
+                        {product.category}
+                      </span>
+                      <Link href={`/products/${product.slug}`}>
+                        <h3 className="font-serif text-[0.85rem] lg:text-sm text-[#3E2723] mb-1 group-hover:text-[#8C6239] transition-colors leading-snug line-clamp-1 min-h-[1.25rem]">
+                          {product.title}
+                        </h3>
+                      </Link>
+                      <p className="font-sans text-[0.55rem] lg:text-[0.6rem] text-[#8C6239] mb-1.5 leading-snug hidden lg:block line-clamp-1">
+                        {product.woodType} / {product.finish}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="pt-1">
+                    <Link href={`/products/${product.slug}`} className="font-sans text-[0.5rem] lg:text-[0.55rem] tracking-[0.12em] uppercase text-[#3E2723] group-hover:text-[#8C6239] transition-colors flex items-center gap-1 font-medium mt-auto">
                       View Details
                       <span className="transform transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </Link>
