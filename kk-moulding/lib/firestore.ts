@@ -189,9 +189,9 @@ export function onSettingsChange(callback: (settings: SiteSettings) => void) {
 const defaultSettings: SiteSettings = {
   heroHeading: 'Handcrafted Wooden Mouldings',
   heroSubheading: 'Crafted for timeless interiors and architectural spaces.',
-  aboutTitle: 'Why We Love the Grain',
+  aboutTitle: 'Crafted with Care. Built to Last.',
   aboutText:
-    'At K K Moulding, every piece begins with a single question: how can wood serve the spaces people love? For over a decade, our workshop in Gujarat has been a quiet place of careful hands and honest materials — no shortcuts, no compromises.',
+    "At K K Moulding, we believe great interiors begin with quality craftsmanship. For years, we have helped homeowners, architects, interior designers, and builders bring their ideas to life with premium wooden mouldings and door frames. Every product is carefully crafted using quality materials and attention to detail, ensuring lasting beauty, durability, and performance. Whether you're building a new space or renovating an existing one, we're committed to providing products and service you can rely on.",
   seoTitle: 'K K Moulding — Premium Handcrafted Wooden Mouldings',
   seoDescription:
     'K K Moulding crafts premium wooden mouldings, door chaukats, wall panels and decorative profiles for architects, builders, and discerning homeowners across India.',

@@ -13,7 +13,7 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
         serif: ['"Playfair Display"', 'serif'],
       },
       boxShadow: {

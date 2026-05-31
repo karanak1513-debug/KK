@@ -53,7 +53,7 @@ export default function HeroSection() {
             className="section-label mb-5"
             style={{ color: 'rgba(169,133,98,0.9)', letterSpacing: '0.18em' }}
           >
-            Since 2010 · Gujarat, India
+            Since 2010 · Delhi, India
           </p>
           <h1
             className="font-serif font-semibold leading-tight mb-6"

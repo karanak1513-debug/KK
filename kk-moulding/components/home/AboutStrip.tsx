@@ -15,7 +15,7 @@ export default function AboutStrip() {
             </h2>
             <div className="divider" />
             <p className="font-sans text-base leading-relaxed mb-6" style={{ color: 'var(--color-stone)' }}>
-              At K K Moulding, every piece begins with a single question: how can wood serve the spaces people love? For over a decade, our workshop in Gujarat has been a quiet place of careful hands and honest materials — no shortcuts, no compromises.
+              At K K Moulding, every piece begins with a single question: how can wood serve the spaces people love? For over a decade, our workshop in Delhi has been a quiet place of careful hands and honest materials — no shortcuts, no compromises.
             </p>
             <p className="font-sans text-base leading-relaxed mb-10" style={{ color: 'var(--color-stone)' }}>
               We work with architects, contractors, and discerning homeowners who understand that the right moulding completes a room the way punctuation completes a sentence. Understated, essential, and made to last.

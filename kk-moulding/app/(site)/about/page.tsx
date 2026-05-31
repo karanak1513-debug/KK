@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'About K K Moulding',
-  description: 'Premium handcrafted wooden mouldings from our workshop in Gujarat, India.',
+  description: 'Premium handcrafted wooden mouldings from our workshop in Delhi, India.',
 };
 
 import { getSiteSettings } from '@/lib/firestore';

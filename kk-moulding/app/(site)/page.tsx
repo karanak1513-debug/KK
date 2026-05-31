@@ -114,19 +114,28 @@ export default async function Home() {
             {/* Center Content */}
             <div className="lg:col-span-4 px-4 lg:px-8">
               <span className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-[#8C6239] mb-4 block font-medium">
-                CRAFTSMANSHIP
+                WHY CHOOSE US
               </span>
               <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl leading-tight mb-6">
-                {settings?.aboutTitle || 'Built by Hand. Perfected by Time.'}
+                {settings?.aboutTitle || 'Crafted with Care. Built to Last.'}
               </h2>
               <p className="font-sans text-sm text-[#8C6239] leading-relaxed mb-8 max-w-sm whitespace-pre-wrap">
-                {settings?.aboutText || 'Each piece is carefully handcrafted by our experienced artisans using traditional techniques and modern tools for precision and durability.'}
+                {settings?.aboutText || 'At K K Moulding, we believe great interiors begin with quality craftsmanship. For years, we have helped homeowners, architects, interior designers, and builders bring their ideas to life with premium wooden mouldings and door frames. Every product is carefully crafted using quality materials and attention to detail, ensuring lasting beauty, durability, and performance. Whether you\'re building a new space or renovating an existing one, we\'re committed to providing products and service you can rely on.'}
               </p>
               
               <ul className="space-y-3 mb-10">
-                {['Finest Quality Materials', 'Precision Craftsmanship', 'Attention to Detail', 'Long Lasting Beauty'].map((item, i) => (
+                {[
+                  'Premium Quality Materials',
+                  'Skilled & Experienced Craftsmanship',
+                  'Custom Solutions for Every Project',
+                  'Durable & Long-Lasting Products',
+                  'Attention to Every Detail',
+                  'Trusted by Homeowners & Professionals',
+                  'Reliable Service & Timely Delivery',
+                  'Customer Satisfaction Comes First',
+                ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 font-sans text-sm text-[#3E2723]">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#8C6239]">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#8C6239] flex-shrink-0">
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                     {item}
