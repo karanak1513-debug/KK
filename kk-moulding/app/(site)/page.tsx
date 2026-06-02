@@ -27,7 +27,7 @@ export default async function Home() {
               <p className="font-sans text-base text-[#8C6239] leading-relaxed mb-10 max-w-sm">
                 {settings?.heroSubheading || 'Crafted for timeless interiors and architectural spaces.'}
               </p>
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap items-center gap-4 mb-4">
                 <Link href="/products" className="btn-pill-dark">
                   Explore Collection
                   <span className="transform transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -36,6 +36,19 @@ export default async function Home() {
                   Request Enquiry
                 </Link>
               </div>
+              {settings?.googleReviewUrl && (
+                <div className="mt-4">
+                  <a
+                    href={settings.googleReviewUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#D5C2B1] bg-[#FAF8F5]/80 hover:bg-[#F2ECE4] hover:border-[#BCA38D] text-[10px] font-semibold uppercase tracking-widest text-[#5C3E21] transition-all duration-300 shadow-sm"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-[#D4AF37] shrink-0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Review us on Google
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Right Column - Image */}
@@ -55,45 +68,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="py-20 lg:py-12">
-        <div className="container-editorial">
-          <div className="flex items-center justify-between mb-12">
-            <div className="flex items-center gap-6">
-              <h2 className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#3E2723] font-bold">
-                FEATURED PRODUCTS
-              </h2>
-              <div className="w-16 h-[1px] bg-[#E6D5C3] hidden sm:block"></div>
-            </div>
-            <Link href="/products" className="font-sans text-sm text-[#3E2723] hover:text-[#8C6239] flex items-center gap-2 transition-colors">
-              View all products →
-            </Link>
-          </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6">
-            {products.map((prod, i) => (
-              <Link href={`/products`} key={prod.id} className="group block">
-                <div className="aspect-[4/5] bg-[#E6D5C3]/30 overflow-hidden rounded-[4px] mb-4 relative">
-                  {prod.images?.[0] && (
-                    <img
-                      src={prod.images[0]}
-                      alt={prod.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  )}
-                </div>
-                <h3 className="font-sans text-sm text-[#3E2723] font-medium group-hover:text-[#8C6239] transition-colors">{prod.title}</h3>
-                <p className="font-sans text-xs text-[#8C6239] mt-1">{prod.category}</p>
-              </Link>
-            ))}
-            {products.length === 0 && (
-              <div className="col-span-full py-12 text-center text-[#8C6239] font-sans text-sm">
-                No featured products yet.
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
 
       {/* Craftsmanship Section */}
       <section className="py-20 lg:py-12 bg-[#EBE5DE]">
@@ -211,9 +186,22 @@ export default async function Home() {
                 <p className="font-sans text-sm text-[#8C6239] leading-relaxed mb-10">
                   We are here to bring your vision to life with custom solutions and expert support.
                 </p>
-                <Link href="/contact" className="btn-pill-dark mb-10">
-                  Request Enquiry
-                </Link>
+                <div className="flex flex-col items-start gap-4 mb-10">
+                  <Link href="/contact" className="btn-pill-dark">
+                    Request Enquiry
+                  </Link>
+                  {settings?.googleReviewUrl && (
+                    <a
+                      href={settings.googleReviewUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#D5C2B1] bg-[#FAF8F5]/80 hover:bg-[#F2ECE4] hover:border-[#BCA38D] text-[10px] font-semibold uppercase tracking-widest text-[#5C3E21] transition-all duration-300 shadow-sm"
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-[#D4AF37] shrink-0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      Review us on Google
+                    </a>
+                  )}
+                </div>
                 
                 <div className="flex items-center gap-8 font-sans text-sm text-[#3E2723] font-medium">
                   <a href={`https://wa.me/${(settings?.whatsapp || '919876543210').replace(/[^0-9]/g, '')}`} className="flex items-center gap-2 hover:text-[#8C6239] transition-colors">

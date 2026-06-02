@@ -3,6 +3,22 @@ import Script from 'next/script';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { Toaster } from 'react-hot-toast';
+import { Montserrat, Cormorant_Garamond } from 'next/font/google';
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
+  display: 'swap',
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const defaultMeta = {
@@ -24,6 +40,12 @@ export async function generateMetadata(): Promise<Metadata> {
           metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
           title: fields.seoTitle?.stringValue || defaultMeta.title,
           description: fields.seoDescription?.stringValue || defaultMeta.description,
+          keywords: fields.seoKeywords?.stringValue
+            ? fields.seoKeywords.stringValue.split(',').map((k: string) => k.trim())
+            : [],
+          authors: fields.ownerName?.stringValue
+            ? [{ name: fields.ownerName.stringValue }]
+            : [],
         };
       }
     }
@@ -43,11 +65,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${montserrat.variable} ${cormorant.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
         <meta name="theme-color" content="#FFFFFF" />
       </head>
       <body className="antialiased bg-[#FFFFFF] text-[#3E2723] font-sans selection:bg-[#3E2723] selection:text-[#FFFFFF]">

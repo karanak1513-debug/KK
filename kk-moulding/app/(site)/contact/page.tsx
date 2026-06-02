@@ -19,7 +19,10 @@ export default function ContactPage() {
   const phone = settings?.phone || '+91 9718503557';
   const email = settings?.email || 'K.KMolding5@gmail.com';
   const address = settings?.address || 'B-116 Basement, Front Side, W.H.S Timber Market, Kirti Nagar, New Delhi 110015, India';
-  const mapEmbedUrl = settings?.mapEmbedUrl || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118447.92896374838!2d70.75119!3d22.30390!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959ca4d0c0f0f0f%3A0x5a93938f7ab44b7f!2sRajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin';
+  const ownerName = settings?.ownerName || '';
+  const gstNumber = settings?.gstNumber || '';
+  const googleReviewUrl = settings?.googleReviewUrl || 'https://g.page/r/CYn9m2EZnkYqEBM/review';
+  const mapEmbedUrl = settings?.mapEmbedUrl || 'https://maps.google.com/maps?q=28.637474,77.136897&z=15&output=embed';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,6 +68,22 @@ export default function ContactPage() {
               <span className="font-sans text-[0.65rem] tracking-[0.25em] uppercase text-[#999999] mb-8 block font-medium">Direct Contact</span>
               
               <div className="space-y-10 mb-12">
+                {ownerName && (
+                  <div>
+                    <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#999999] mb-2 block font-medium">Owner Name</span>
+                    <p className="font-serif text-2xl text-[#3E2723]">
+                      {ownerName}
+                    </p>
+                  </div>
+                )}
+                {gstNumber && (
+                  <div>
+                    <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#999999] mb-2 block font-medium">GSTIN (GST Number)</span>
+                    <p className="font-serif text-2xl text-[#3E2723]">
+                      {gstNumber}
+                    </p>
+                  </div>
+                )}
                 <div>
                   <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#999999] mb-2 block font-medium">Phone</span>
                   <a
@@ -185,6 +204,19 @@ export default function ContactPage() {
                 >
                   {loading ? 'Sending Enquiry…' : 'Submit Enquiry'}
                 </button>
+                {googleReviewUrl && (
+                  <div className="text-center mt-6">
+                    <a
+                      href={googleReviewUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#D5C2B1] bg-[#FAF8F5]/80 hover:bg-[#F2ECE4] hover:border-[#BCA38D] text-[10px] font-semibold uppercase tracking-widest text-[#5C3E21] transition-all duration-300 shadow-sm"
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-[#D4AF37] shrink-0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                      Review us on Google
+                    </a>
+                  </div>
+                )}
               </form>
             </div>
           </div>

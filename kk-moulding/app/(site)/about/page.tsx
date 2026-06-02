@@ -25,12 +25,29 @@ export default async function AboutPage() {
           K K Moulding is a trusted name in premium wooden mouldings, door frames (chaukats), wall mouldings, and decorative interior solutions. With a strong focus on quality craftsmanship, precision manufacturing, and attention to detail, we create products that enhance the beauty and character of residential and commercial spaces. Our extensive range is designed to combine durability, functionality, and timeless elegance. We work closely with homeowners, architects, interior designers, and builders to deliver customized solutions that meet diverse project requirements. At K K Moulding, customer satisfaction, superior quality, and reliable service remain at the heart of everything we do.
         </p>
 
-        <div className="relative aspect-video bg-[#FAFAFA] overflow-hidden rounded-[4px] mb-8 shadow-sm max-w-3xl mx-auto">
+        <div className="relative aspect-video bg-[#FAFAFA] overflow-hidden rounded-[4px] mb-12 shadow-sm max-w-3xl mx-auto">
           <img
             src={image}
             alt="Workshop interior"
             className="w-full h-full object-cover"
           />
+        </div>
+
+        {/* Google Business QR */}
+        <div className="max-w-sm mx-auto mb-12 bg-[#FAFAFA] border border-[#E6D5C3] rounded-[4px] p-6 text-center shadow-sm">
+          <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#8C6239] font-medium mb-3">
+            Google Business Profile
+          </p>
+          <div className="relative w-44 h-44 mx-auto mb-4 bg-white p-2 border border-[#E6D5C3]">
+            <img
+              src="/google-qr.png"
+              alt="Google Business QR Code"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <p className="font-sans text-xs text-[#8C6239] leading-relaxed">
+            Scan to view our location, photos, and reviews on Google Maps.
+          </p>
         </div>
 
         <Link href="/contact" className="btn-pill-dark px-10 py-3 text-sm">

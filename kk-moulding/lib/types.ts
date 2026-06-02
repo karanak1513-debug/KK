@@ -62,6 +62,10 @@ export interface SiteSettings {
   productBannerImage?: string;
   homeGalleryImage?: string;
   aboutImage?: string;
+  ownerName?: string;
+  gstNumber?: string;
+  seoKeywords?: string;
+  googleReviewUrl?: string;
 }
 
 export const CATEGORIES = [

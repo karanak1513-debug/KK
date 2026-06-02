@@ -200,11 +200,15 @@ const defaultSettings: SiteSettings = {
   email: 'K.KMolding5@gmail.com',
   address: 'B-116 Basement, Front Side, W.H.S Timber Market, Kirti Nagar, New Delhi 110015, India',
   mapEmbedUrl:
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29732.558454658753!2d70.7512!3d22.3039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959ca4d0c0f0f0f%3A0x0!2sRajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1000000000000!5m2!1sen!2sin',
-  showMap: false,
+    'https://maps.google.com/maps?q=28.637474,77.136897&z=15&output=embed',
+  showMap: true,
   heroImage: '',
   craftLeftImage: '',
   craftRightImage: '',
   enquiryImage: '',
   aboutImage: '',
+  ownerName: 'Karan Kumar',
+  gstNumber: '',
+  seoKeywords: 'wooden mouldings, door frames, door chaukats, wall panels, decorative profiles, K K Moulding',
+  googleReviewUrl: 'https://g.page/r/CYn9m2EZnkYqEBM/review',
 };

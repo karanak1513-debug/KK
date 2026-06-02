@@ -34,12 +34,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 w-full z-50 transition-all duration-500"
-      style={{
-        backgroundColor: isScrolled || isMenuOpen ? '#FFFFFF' : 'transparent',
-        borderBottom: isScrolled ? '1px solid #E6D5C3' : '1px solid transparent',
-      }}
-      suppressHydrationWarning
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        isScrolled || isMenuOpen ? 'bg-white border-b border-[#E6D5C3]' : 'bg-transparent border-b border-transparent'
+      }`}
     >
       <div className="container-editorial flex items-center justify-between py-3 lg:py-4">
         {/* Logo */}

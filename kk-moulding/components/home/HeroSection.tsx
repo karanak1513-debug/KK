@@ -1,7 +1,7 @@
-// components/home/HeroSection.tsx
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function HeroSection() {
@@ -18,10 +18,13 @@ export default function HeroSection() {
     >
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80&auto=format&fit=crop"
           alt="Handcrafted wooden mouldings workshop"
-          className="w-full h-full object-cover"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
           style={{
             opacity: loaded ? 0.55 : 0,
             transition: 'opacity 1.2s ease',

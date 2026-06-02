@@ -1,18 +1,26 @@
-// components/home/ContactSection.tsx
 'use client';
 
-import { useState } from 'react';
-import { addEnquiry } from '@/lib/firestore';
+import { useState, useEffect } from 'react';
+import { addEnquiry, getSiteSettings } from '@/lib/firestore';
 import toast from 'react-hot-toast';
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
+  const [googleReviewUrl, setGoogleReviewUrl] = useState('https://g.page/r/CYn9m2EZnkYqEBM/review');
 
-  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919876543210';
-  const phone = process.env.NEXT_PUBLIC_PHONE_NUMBER || '+91 98765 43210';
-  const email = process.env.NEXT_PUBLIC_EMAIL || 'info@kkmoulding.com';
-  const address = process.env.NEXT_PUBLIC_ADDRESS || 'Industrial Area, Rajkot, Gujarat';
+  useEffect(() => {
+    getSiteSettings().then((settings) => {
+      if (settings?.googleReviewUrl) {
+        setGoogleReviewUrl(settings.googleReviewUrl);
+      }
+    }).catch(() => {});
+  }, []);
+
+  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '919718503557';
+  const phone = process.env.NEXT_PUBLIC_PHONE_NUMBER || '+91 9718503557';
+  const email = process.env.NEXT_PUBLIC_EMAIL || 'K.KMolding5@gmail.com';
+  const address = process.env.NEXT_PUBLIC_ADDRESS || 'B-116 Basement, Front Side, W.H.S Timber Market, Kirti Nagar, New Delhi 110015, India';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,6 +137,19 @@ export default function ContactSection() {
               >
                 {loading ? 'Sending…' : 'Send Enquiry'}
               </button>
+              {googleReviewUrl && (
+                <div className="text-center mt-6">
+                  <a
+                    href={googleReviewUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#D5C2B1] bg-[#FAF8F5]/80 hover:bg-[#F2ECE4] hover:border-[#BCA38D] text-[10px] font-semibold uppercase tracking-widest text-[#5C3E21] transition-all duration-300 shadow-sm"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-[#D4AF37] shrink-0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Review us on Google
+                  </a>
+                </div>
+              )}
             </form>
           </div>
         </div>
@@ -136,7 +157,7 @@ export default function ContactSection() {
         {/* Map */}
         <div className="mt-16" style={{ height: '320px', overflow: 'hidden' }}>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118447.92896374838!2d70.75119!3d22.30390!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959ca4d0c0f0f0f%3A0x5a93938f7ab44b7f!2sRajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            src="https://maps.google.com/maps?q=28.637474,77.136897&z=15&output=embed"
             width="100%"
             height="320"
             style={{ border: 0, filter: 'grayscale(0.3) sepia(0.15)' }}
