@@ -97,6 +97,7 @@ export default function AdminSettingsPage() {
         { key: 'ownerName', label: 'Owner Name', placeholder: 'Karan Kumar' },
         { key: 'gstNumber', label: 'GSTIN (GST Number)', placeholder: '07AAAAA1111A1Z1' },
         { key: 'googleReviewUrl', label: 'Google Review Link', placeholder: 'https://g.page/r/CYn9m2EZnkYqEBM/review' },
+        { key: 'instagram', label: 'Instagram Link', placeholder: 'https://www.instagram.com/...' },
         { key: 'phone', label: 'Phone Number', placeholder: '+91 98765 43210' },
         { key: 'whatsapp', label: 'WhatsApp Number (digits only)', placeholder: '919876543210' },
         { key: 'email', label: 'Email Address', placeholder: 'info@kkmoulding.com' },

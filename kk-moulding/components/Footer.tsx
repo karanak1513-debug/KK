@@ -20,6 +20,7 @@ export default async function Footer() {
   const address = settings?.address?.stringValue || 'B-116 Basement, Front Side, W.H.S Timber Market, Kirti Nagar, New Delhi 110015, India';
   const ownerName = settings?.ownerName?.stringValue || '';
   const gstNumber = settings?.gstNumber?.stringValue || '';
+  const instagram = settings?.instagram?.stringValue || 'https://www.instagram.com/kk_moulding?igsh=MTd0bGVnY2ZrZGoyNw%3D%3D';
 
   return (
     <footer className="bg-[#3E2723] text-[#FFFFFF] pt-10 pb-8">
@@ -34,7 +35,22 @@ export default async function Footer() {
             <p className="font-sans text-[#A3A3A3] text-xs leading-relaxed mb-6 max-w-[200px]">
               Premium wooden mouldings and architectural woodwork crafted with passion and perfection.
             </p>
-
+            {instagram && (
+              <a
+                href={instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-sans text-[0.65rem] tracking-[0.15em] uppercase text-[#A3A3A3] hover:text-[#FFFFFF] transition-colors duration-300"
+                aria-label="Follow us on Instagram"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+                <span>Instagram</span>
+              </a>
+            )}
           </div>
 
           {/* Column 2: Quick Links */}

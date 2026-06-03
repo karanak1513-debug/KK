@@ -209,6 +209,7 @@ const defaultSettings: SiteSettings = {
   aboutImage: '',
   ownerName: 'Karan Kumar',
   gstNumber: '',
+  instagram: 'https://www.instagram.com/kk_moulding?igsh=MTd0bGVnY2ZrZGoyNw%3D%3D',
   seoKeywords: 'wooden mouldings, door frames, door chaukats, wall panels, decorative profiles, K K Moulding',
   googleReviewUrl: 'https://g.page/r/CYn9m2EZnkYqEBM/review',
 };

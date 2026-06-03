@@ -64,6 +64,7 @@ export interface SiteSettings {
   aboutImage?: string;
   ownerName?: string;
   gstNumber?: string;
+  instagram?: string;
   seoKeywords?: string;
   googleReviewUrl?: string;
 }

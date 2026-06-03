@@ -8,11 +8,15 @@ export default function ContactSection() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [googleReviewUrl, setGoogleReviewUrl] = useState('https://g.page/r/CYn9m2EZnkYqEBM/review');
+  const [instagram, setInstagram] = useState('https://www.instagram.com/kk_moulding?igsh=MTd0bGVnY2ZrZGoyNw%3D%3D');
 
   useEffect(() => {
     getSiteSettings().then((settings) => {
       if (settings?.googleReviewUrl) {
         setGoogleReviewUrl(settings.googleReviewUrl);
+      }
+      if (settings?.instagram) {
+        setInstagram(settings.instagram);
       }
     }).catch(() => {});
   }, []);
@@ -60,6 +64,9 @@ export default function ContactSection() {
               <ContactDetail label="Phone" value={phone} href={`tel:${phone.replace(/\s/g, '')}`} />
               <ContactDetail label="WhatsApp" value={phone} href={`https://wa.me/${whatsapp}`} external />
               <ContactDetail label="Email" value={email} href={`mailto:${email}`} />
+              {instagram && (
+                <ContactDetail label="Instagram" value="@kk_moulding" href={instagram} external />
+              )}
               <div>
                 <p className="section-label mb-1">Address</p>
                 <p className="font-sans text-base" style={{ color: 'var(--color-ink)' }}>{address}</p>

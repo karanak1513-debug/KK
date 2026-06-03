@@ -103,6 +103,17 @@ export default function ContactPage() {
                   </a>
                 </div>
                 <div>
+                  <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#999999] mb-2 block font-medium">Instagram</span>
+                  <a
+                    href={settings?.instagram || 'https://www.instagram.com/kk_moulding?igsh=MTd0bGVnY2ZrZGoyNw%3D%3D'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-serif text-2xl text-[#3E2723] hover:text-[#8C6239] transition-colors"
+                  >
+                    @kk_moulding
+                  </a>
+                </div>
+                <div>
                   <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#999999] mb-2 block font-medium">Workshop Address</span>
                   <p className="font-sans text-sm text-[#8C6239] leading-loose font-light max-w-xs">
                     {address}
