@@ -2,7 +2,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getGallery, addGalleryItem, deleteGalleryItem } from '@/lib/firestore';
+import { getGallery, addGalleryItem, deleteGalleryItem, updateGalleryItem } from '@/lib/firestore';
 import { uploadImage } from '@/lib/storage';
 import { GalleryItem } from '@/lib/types';
 import toast from 'react-hot-toast';
@@ -14,6 +14,7 @@ export default function AdminGalleryPage() {
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const [editingItem, setEditingItem] = useState<GalleryItem | null>(null);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [file, setFile] = useState<File | null>(null);
@@ -39,22 +40,36 @@ export default function AdminGalleryPage() {
     setPreview(URL.createObjectURL(f));
   };
 
-  const handleUpload = async () => {
-    if (!file || !title) { toast.error('Title and image required.'); return; }
+  const handleSubmit = async () => {
+    if (!title) { toast.error('Title is required.'); return; }
+    if (!editingItem && !file) { toast.error('Image is required.'); return; }
+    
     setUploading(true);
     try {
-      const path = `gallery/${Date.now()}_${file.name}`;
-      const url = await uploadImage(file, path, setUploadPct);
-      await addGalleryItem({ image: url, title, category });
-      toast.success('Image added to gallery.');
+      let url = editingItem?.image || '';
+      if (file) {
+        const path = `gallery/${Date.now()}_${file.name}`;
+        url = await uploadImage(file, path, setUploadPct);
+      }
+      
+      if (editingItem?.id) {
+        await updateGalleryItem(editingItem.id, { title, category, image: url });
+        toast.success('Gallery item updated.');
+      } else {
+        await addGalleryItem({ image: url, title, category });
+        toast.success('Image added to gallery.');
+      }
+      
       setShowForm(false);
+      setEditingItem(null);
       setFile(null);
       setPreview(null);
       setTitle('');
+      setCategory('');
       setUploadPct(0);
       loadGallery();
     } catch {
-      toast.error('Upload failed.');
+      toast.error(editingItem ? 'Failed to update.' : 'Upload failed.');
     } finally {
       setUploading(false);
     }
@@ -84,7 +99,19 @@ export default function AdminGalleryPage() {
           <h1 className="font-serif text-3xl font-semibold text-[#3E2723]">Gallery</h1>
           <p className="font-sans text-sm mt-2 text-[#8C6239]">{items.length} images</p>
         </div>
-        <button onClick={() => setShowForm(true)} className="bg-[#8C6239] text-[#FFFFFF] px-6 py-2.5 rounded-md text-sm tracking-widest uppercase font-medium hover:bg-[#7A5330] transition-colors shadow-sm disabled:opacity-50">+ Add Image</button>
+        <button 
+          onClick={() => {
+            setEditingItem(null);
+            setTitle('');
+            setCategory('');
+            setFile(null);
+            setPreview(null);
+            setShowForm(true);
+          }} 
+          className="bg-[#8C6239] text-[#FFFFFF] px-6 py-2.5 rounded-md text-sm tracking-widest uppercase font-medium hover:bg-[#7A5330] transition-colors shadow-sm disabled:opacity-50"
+        >
+          + Add Image
+        </button>
       </div>
 
       {loading ? (
@@ -94,7 +121,19 @@ export default function AdminGalleryPage() {
       ) : items.length === 0 ? (
         <div className="bg-[#FFFFFF] border border-[#E6D5C3] rounded-lg shadow-sm p-12 text-center">
           <p className="font-serif text-xl mb-4 text-[#8C6239]">No gallery images yet.</p>
-          <button onClick={() => setShowForm(true)} className="bg-[#FFFFFF] text-[#8C6239] border border-[#E6D5C3] px-6 py-2.5 rounded-md text-sm tracking-widest uppercase font-medium hover:bg-[#F5EFE9] transition-colors shadow-sm">Upload First Image</button>
+          <button 
+            onClick={() => {
+              setEditingItem(null);
+              setTitle('');
+              setCategory('');
+              setFile(null);
+              setPreview(null);
+              setShowForm(true);
+            }} 
+            className="bg-[#FFFFFF] text-[#8C6239] border border-[#E6D5C3] px-6 py-2.5 rounded-md text-sm tracking-widest uppercase font-medium hover:bg-[#F5EFE9] transition-colors shadow-sm"
+          >
+            Upload First Image
+          </button>
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -106,27 +145,52 @@ export default function AdminGalleryPage() {
                 className="w-full object-cover aspect-square"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-[#3E2723]/80 backdrop-blur-sm">
-                <p className="font-sans text-sm text-[#FFFFFF] font-medium text-center px-4 mb-2">{item.title}</p>
+                <p className="font-sans text-sm text-[#FFFFFF] font-medium text-center px-4 mb-1">{item.title}</p>
                 <p className="font-sans text-xs uppercase tracking-widest text-[#E6D5C3] font-medium mb-4">{item.category}</p>
-                <button
-                  onClick={() => handleDelete(item.id!)}
-                  className="font-sans text-xs uppercase tracking-wider font-medium px-4 py-2 transition-colors bg-[#D32F2F] text-[#FFFFFF] rounded hover:bg-[#B71C1C]"
-                >
-                  Delete
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => {
+                      setEditingItem(item);
+                      setTitle(item.title);
+                      setCategory(item.category || '');
+                      setFile(null);
+                      setPreview(item.image);
+                      setShowForm(true);
+                    }}
+                    className="font-sans text-xs uppercase tracking-wider font-medium px-3.5 py-1.5 transition-colors bg-[#8C6239] text-[#FFFFFF] rounded hover:bg-[#7A5330]"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(item.id!)}
+                    className="font-sans text-xs uppercase tracking-wider font-medium px-3.5 py-1.5 transition-colors bg-[#D32F2F] text-[#FFFFFF] rounded hover:bg-[#B71C1C]"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* Upload Modal */}
+      {/* Upload/Edit Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#00000080] backdrop-blur-sm">
           <div className="w-full max-w-md bg-[#FFFFFF] border border-[#E6D5C3] shadow-xl rounded-lg overflow-hidden">
             <div className="flex items-center justify-between px-6 py-4 border-b border-[#E6D5C3] bg-[#FAFAFA]">
-              <h2 className="font-serif font-semibold text-xl text-[#3E2723]">Add Gallery Image</h2>
-              <button onClick={() => setShowForm(false)} className="text-3xl text-[#8C6239] hover:text-[#3E2723] leading-none">&times;</button>
+              <h2 className="font-serif font-semibold text-xl text-[#3E2723]">
+                {editingItem ? 'Edit Gallery Image' : 'Add Gallery Image'}
+              </h2>
+              <button 
+                onClick={() => {
+                  setShowForm(false);
+                  setEditingItem(null);
+                }} 
+                className="text-3xl text-[#8C6239] hover:text-[#3E2723] leading-none"
+              >
+                &times;
+              </button>
             </div>
             
             <div className="p-6 space-y-5">
@@ -151,7 +215,9 @@ export default function AdminGalleryPage() {
                 />
               </div>
               <div>
-                <label className="block mb-2 font-sans text-xs uppercase tracking-widest text-[#8C6239] font-medium">Image</label>
+                <label className="block mb-2 font-sans text-xs uppercase tracking-widest text-[#8C6239] font-medium">
+                  {editingItem ? 'Replace Image (Optional)' : 'Image'}
+                </label>
                 <label className="flex flex-col items-center justify-center border-2 border-dashed border-[#E6D5C3] bg-[#FAFAFA] rounded py-8 cursor-pointer hover:bg-[#F5EFE9] transition-colors">
                   <input type="file" accept="image/*" className="hidden" onChange={handleFileSelect} />
                   {preview ? (
@@ -165,7 +231,7 @@ export default function AdminGalleryPage() {
               {uploading && (
                 <div className="mt-4">
                   <div className="flex justify-between mb-1.5">
-                    <span className="font-sans text-xs font-medium text-[#8C6239]">Uploading…</span>
+                    <span className="font-sans text-xs font-medium text-[#8C6239]">Saving…</span>
                     <span className="font-sans text-xs font-medium text-[#8C6239]">{uploadPct}%</span>
                   </div>
                   <div className="w-full h-1.5 bg-[#E6D5C3] rounded-full overflow-hidden">
@@ -176,17 +242,20 @@ export default function AdminGalleryPage() {
             </div>
             <div className="flex justify-end gap-3 px-6 py-4 border-t border-[#E6D5C3] bg-[#FAFAFA]">
               <button 
-                onClick={() => setShowForm(false)} 
+                onClick={() => {
+                  setShowForm(false);
+                  setEditingItem(null);
+                }} 
                 className="font-sans text-sm tracking-widest uppercase font-medium text-[#8C6239] hover:text-[#3E2723] transition-colors px-4 py-2"
               >
                 Cancel
               </button>
               <button 
-                onClick={handleUpload} 
-                disabled={uploading || !file || !title} 
+                onClick={handleSubmit} 
+                disabled={uploading || !title || (!editingItem && !file)} 
                 className="bg-[#8C6239] text-[#FFFFFF] px-6 py-2.5 rounded-md text-sm tracking-widest uppercase font-medium hover:bg-[#7A5330] transition-colors shadow-sm disabled:opacity-50"
               >
-                {uploading ? 'Uploading…' : 'Upload Image'}
+                {uploading ? 'Saving…' : (editingItem ? 'Save Changes' : 'Upload Image')}
               </button>
             </div>
           </div>

@@ -110,6 +110,10 @@ export async function deleteGalleryItem(id: string): Promise<void> {
   await deleteDoc(doc(db, 'gallery', id));
 }
 
+export async function updateGalleryItem(id: string, data: Partial<GalleryItem>): Promise<void> {
+  await updateDoc(doc(db, 'gallery', id), data);
+}
+
 // ─── FAQ ─────────────────────────────────────────────────────────────────────
 
 export async function getFAQs(): Promise<FAQItem[]> {
