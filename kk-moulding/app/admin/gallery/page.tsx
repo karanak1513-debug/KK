@@ -1,12 +1,13 @@
 // app/admin/gallery/page.tsx
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getGallery, addGalleryItem, deleteGalleryItem, updateGalleryItem } from '@/lib/firestore';
 import { uploadImage } from '@/lib/storage';
 import { GalleryItem } from '@/lib/types';
 import toast from 'react-hot-toast';
 import ConfirmModal from '@/components/ConfirmModal';
+import { useDropzone } from 'react-dropzone';
 
 const galleryCategories = ['Installations', 'Workshop', 'Products', 'Textures', 'Other'];
 
@@ -22,6 +23,20 @@ export default function AdminGalleryPage() {
   const [uploading, setUploading] = useState(false);
   const [uploadPct, setUploadPct] = useState(0);
   const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; id: string }>({ isOpen: false, id: '' });
+
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    if (acceptedFiles?.[0]) {
+      const f = acceptedFiles[0];
+      setFile(f);
+      setPreview(URL.createObjectURL(f));
+    }
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { 'image/*': [] },
+    multiple: false
+  });
 
   const loadGallery = () => {
     setLoading(true);
@@ -218,14 +233,29 @@ export default function AdminGalleryPage() {
                 <label className="block mb-2 font-sans text-xs uppercase tracking-widest text-[#8C6239] font-medium">
                   {editingItem ? 'Replace Image (Optional)' : 'Image'}
                 </label>
-                <label className="flex flex-col items-center justify-center border-2 border-dashed border-[#E6D5C3] bg-[#FAFAFA] rounded py-8 cursor-pointer hover:bg-[#F5EFE9] transition-colors">
-                  <input type="file" accept="image/*" className="hidden" onChange={handleFileSelect} />
+                <div
+                  {...getRootProps()}
+                  className={`flex flex-col items-center justify-center border-2 border-dashed rounded py-8 cursor-pointer transition-colors ${
+                    isDragActive ? 'border-[#8C6239] bg-[#F5EFE9]' : 'border-[#E6D5C3] bg-[#FAFAFA] hover:bg-[#F5EFE9]'
+                  }`}
+                >
+                  <input {...getInputProps()} />
                   {preview ? (
-                    <img src={preview} alt="Preview" className="max-h-40 object-contain rounded shadow-sm" />
+                    <div className="relative group max-h-40">
+                      <img src={preview} alt="Preview" className="max-h-40 object-contain rounded shadow-sm" />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-[#FFFFFF] text-xs font-sans rounded">
+                        Drag or click to replace
+                      </div>
+                    </div>
                   ) : (
-                    <p className="font-sans text-sm font-medium text-[#8C6239]">Click to select image</p>
+                    <div className="text-center p-4">
+                      <p className="font-sans text-sm font-medium text-[#8C6239]">
+                        {isDragActive ? 'Drop the image here…' : 'Drag & drop image here, or click to select'}
+                      </p>
+                      <p className="font-sans text-xs text-[#999999] mt-1">Supports JPG, PNG, WEBP</p>
+                    </div>
                   )}
-                </label>
+                </div>
               </div>
 
               {uploading && (

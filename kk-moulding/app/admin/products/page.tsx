@@ -1,13 +1,14 @@
 // app/admin/products/page.tsx
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getProducts, addProduct, updateProduct, deleteProduct } from '@/lib/firestore';
 import { uploadImage } from '@/lib/storage';
 import { Product, CATEGORIES } from '@/lib/types';
 import toast from 'react-hot-toast';
 import { generateSlug } from '@/lib/storage';
 import ConfirmModal from '@/components/ConfirmModal';
+import { useDropzone } from 'react-dropzone';
 
 const emptyProduct = (): Omit<Product, 'id' | 'createdAt'> => ({
   title: '',
@@ -68,7 +69,7 @@ export default function AdminProductsPage() {
     setShowForm(true);
   };
 
-  const handleImageUpload = async (files: FileList | null) => {
+  const handleImageUpload = async (files: FileList | File[] | null) => {
     if (!files || files.length === 0) return;
     const maxImages = 8;
     const remaining = maxImages - form.images.length;
@@ -76,9 +77,10 @@ export default function AdminProductsPage() {
 
     setUploading(true);
     const uploadedUrls: string[] = [];
+    const fileList = Array.from(files);
 
-    for (let i = 0; i < Math.min(files.length, remaining); i++) {
-      const file = files[i];
+    for (let i = 0; i < Math.min(fileList.length, remaining); i++) {
+      const file = fileList[i];
       const path = `products/${Date.now()}_${i}_${file.name}`;
       try {
         const url = await uploadImage(file, path, (pct) => {
@@ -95,6 +97,16 @@ export default function AdminProductsPage() {
     setUploading(false);
     if (uploadedUrls.length > 0) toast.success(`${uploadedUrls.length} image(s) uploaded`);
   };
+
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    handleImageUpload(acceptedFiles);
+  }, [form.images]);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { 'image/*': [] },
+    multiple: true
+  });
 
   const removeImage = (idx: number) => {
     setForm((f) => ({ ...f, images: f.images.filter((_, i) => i !== idx) }));
@@ -341,22 +353,20 @@ export default function AdminProductsPage() {
                 <label className="block mb-2 font-sans text-xs uppercase tracking-widest text-[#8C6239] font-medium">
                   Product Images ({form.images.length}/8)
                 </label>
-                <label className="flex flex-col items-center justify-center border-2 border-dashed border-[#E6D5C3] bg-[#FAFAFA] rounded py-10 cursor-pointer hover:bg-[#F5EFE9] transition-colors">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    className="hidden"
-                    onChange={(e) => handleImageUpload(e.target.files)}
-                    disabled={uploading || form.images.length >= 8}
-                  />
+                <div
+                  {...getRootProps()}
+                  className={`flex flex-col items-center justify-center border-2 border-dashed rounded py-10 cursor-pointer transition-colors ${
+                    isDragActive ? 'border-[#8C6239] bg-[#F5EFE9]' : 'border-[#E6D5C3] bg-[#FAFAFA] hover:bg-[#F5EFE9]'
+                  }`}
+                >
+                  <input {...getInputProps()} />
                   <p className="font-sans text-sm font-medium text-[#8C6239]">
-                    {uploading ? 'Uploading…' : form.images.length >= 8 ? 'Maximum images reached' : 'Click to upload images (max 8)'}
+                    {uploading ? 'Uploading…' : form.images.length >= 8 ? 'Maximum images reached' : isDragActive ? 'Drop images here…' : 'Drag & drop images here, or click to upload (max 8)'}
                   </p>
                   <p className="font-sans text-xs mt-2 text-[#999999]">
                     JPG, PNG, WEBP — multiple files supported
                   </p>
-                </label>
+                </div>
 
                 {/* Upload progress */}
                 {Object.entries(uploadProgress).map(([i, pct]) => (
