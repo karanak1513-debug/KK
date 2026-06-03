@@ -3,6 +3,22 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_FIREBASE_API_KEY": "AIzaSyBeu57WtKmi49MdEE2hc8QkPapFxHsOkrE",
+      "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN": "kkmouding.firebaseapp.com",
+      "NEXT_PUBLIC_FIREBASE_PROJECT_ID": "kkmouding",
+      "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET": "kkmouding.firebasestorage.app",
+      "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID": "833121757091",
+      "NEXT_PUBLIC_FIREBASE_APP_ID": "1:833121757091:web:6be854fdee3767bd95dc16",
+      "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID": "G-LS036HXXVN",
+      "NEXT_PUBLIC_WHATSAPP_NUMBER": "919718503557",
+      "NEXT_PUBLIC_PHONE_NUMBER": "+91 9718503557",
+      "NEXT_PUBLIC_EMAIL": "K.KMolding5@gmail.com",
+      "NEXT_PUBLIC_ADDRESS": "B-116 Basement, Front Side, W.H.S Timber Market, Kirti Nagar, New Delhi 110015, India",
+      "NEXT_PUBLIC_SITE_URL": "https://kkmoulding.com"
+    }
+  },
   "env": {
     "NEXT_PUBLIC_FIREBASE_API_KEY": "AIzaSyBeu57WtKmi49MdEE2hc8QkPapFxHsOkrE",
     "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN": "kkmouding.firebaseapp.com",
