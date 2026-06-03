@@ -4,6 +4,7 @@ import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import { Montserrat, Cormorant_Garamond } from 'next/font/google';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -83,6 +84,7 @@ export default function RootLayout({
               },
             }}
           />
+          <SpeedInsights />
         </AuthProvider>
         <Script id="chatbase-script" strategy="afterInteractive">
           {`
