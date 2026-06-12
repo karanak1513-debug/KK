@@ -29,9 +29,13 @@ export default async function Footer() {
           
           {/* Column 1: Brand & Desc */}
           <div className="lg:col-span-1">
-            <span className="font-serif text-xl tracking-[0.15em] uppercase mb-6 inline-block text-[#FFFFFF]">
-              K K Moulding
-            </span>
+            <Link href="/" className="inline-block mb-6 h-20 w-auto bg-white rounded-md p-2">
+              <img 
+                src="/logo.png?v=6" 
+                alt="K K Moulding Logo" 
+                className="h-full w-auto object-contain mix-blend-multiply"
+              />
+            </Link>
             <p className="font-sans text-[#A3A3A3] text-xs leading-relaxed mb-6 max-w-[200px]">
               Premium wooden mouldings and architectural woodwork crafted with passion and perfection.
             </p>
