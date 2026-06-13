@@ -41,11 +41,9 @@ export default function Navbar() {
       <div className="container-editorial flex items-center justify-between py-3 lg:py-4">
         {/* Logo */}
         <Link href="/" className="z-50 flex items-center h-16 py-2">
-          <img 
-            src="/logo.png?v=6" 
-            alt="K K Moulding Logo" 
-            className="h-full w-auto object-contain mix-blend-multiply"
-          />
+          <span className="font-sans text-xl md:text-2xl font-normal tracking-[0.25em] text-[#8C6239]">
+            K K MOULDING
+          </span>
         </Link>
 
         {/* Desktop Nav */}

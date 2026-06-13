@@ -29,12 +29,10 @@ export default async function Footer() {
           
           {/* Column 1: Brand & Desc */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-6 h-20 w-auto bg-white rounded-md p-2">
-              <img 
-                src="/logo.png?v=6" 
-                alt="K K Moulding Logo" 
-                className="h-full w-auto object-contain mix-blend-multiply"
-              />
+            <Link href="/" className="inline-block mb-6">
+              <span className="font-sans text-xl md:text-2xl font-normal tracking-[0.25em] text-[#FFFFFF]">
+                K K MOULDING
+              </span>
             </Link>
             <p className="font-sans text-[#A3A3A3] text-xs leading-relaxed mb-6 max-w-[200px]">
               Premium wooden mouldings and architectural woodwork crafted with passion and perfection.
